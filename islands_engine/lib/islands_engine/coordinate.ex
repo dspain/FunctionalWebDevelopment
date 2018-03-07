@@ -17,6 +17,10 @@ defmodule IslandsEngine.Coordinate do
 
       iex> Coordinate.new(1,1)
       {:ok, %Coordinate{row: 1, col: 1}}
+      iex> Coordinate.new(-1,1)
+      {:error, :invalid_coordinate}
+      iex> Coordinate.new(11,1)
+      {:error, :invalid_coordinate}
 
   """
   def new(row, col) when row in @board_range and col in @board_range,
