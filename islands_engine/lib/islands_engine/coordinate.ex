@@ -15,8 +15,8 @@ defmodule IslandsEngine.Coordinate do
 
   ## Examples
 
-      iex> IslandsEngine.Coordinate.new(1,1)
-      {:ok, %IslandsEngine.Coordinate{row: 1, col: 1}}
+      iex> Coordinate.new(1,1)
+      {:ok, %Coordinate{row: 1, col: 1}}
 
   """
   def new(row, col) when row in @board_range and col in @board_range,
