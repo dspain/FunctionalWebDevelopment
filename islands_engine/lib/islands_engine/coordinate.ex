@@ -1,10 +1,24 @@
 defmodule IslandsEngine.Coordinate do
+  @moduledoc """
+  Documentation for IslandsEngine.Coordinate
+  """
   alias __MODULE__
 
   @enforce_keys [:row, :col]
   defstruct [:row, :col]
 
   @board_range 1..10
+
+  @doc """
+  Creates a new coordinate.  Coordinate must have a row and column within
+  the @board_range parameters.
+
+  ## Examples
+
+      iex> IslandsEngine.Coordinate.new(1,1)
+      {:ok, %IslandsEngine.Coordinate{row: 1, col: 1}}
+
+  """
   def new(row, col) when row in @board_range and col in @board_range,
     do: {:ok, %Coordinate{row: row, col: col}}
 
