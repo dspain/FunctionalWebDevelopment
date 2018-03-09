@@ -8,9 +8,17 @@ defmodule IslandsEngine.Island do
   defstruct [:coordinates, :hit_coordinates]
 
   @doc """
-  Create a new island
+  Create a new island using the valid island types:
+    :square, :atoll, :dot, :l_shape, :s_shape
   """
-  def new(), do: %Island{coordinates: MapSet.new(), hit_coordinates: MapSet.new()}
+  def new(type, %Coordinate{} = upper_left) do
+    with [_ | _] = offsets <- offsets(type),
+         %MapSet{} = coordinates <- add_coordinates(offsets, upper_left) do
+      {:ok, %Island{coordinates: coordinates, hit_coordinates: MapSet.new()}}
+    else
+      error -> error
+    end
+  end
 
   defp offsets(:square), do: [{0, 0}, {0, 1}, {1, 0}, {1, 1}]
   defp offsets(:atoll), do: [{0, 0}, {0, 1}, {1, 1}, {2, 0}, {2, 1}]
