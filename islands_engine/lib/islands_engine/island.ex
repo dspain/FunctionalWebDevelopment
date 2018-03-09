@@ -10,6 +10,29 @@ defmodule IslandsEngine.Island do
   @doc """
   Create a new island using the valid island types:
     :square, :atoll, :dot, :l_shape, :s_shape
+
+  ## Examples
+
+    iex> {:ok, coordinate} = Coordinate.new(4,6)
+    {:ok, %Coordinate{row: 4, col: 6}}
+    iex> Island.new(:l_shape, coordinate)
+    {:ok,
+     %Island{
+       coordinates: [
+         %Coordinate{col: 6, row: 4},
+         %Coordinate{col: 6, row: 5},
+         %Coordinate{col: 6, row: 6},
+         %Coordinate{col: 7, row: 6}
+       ] |> Enum.into(MapSet.new),
+       hit_coordinates: Enum.into([], MapSet.new)
+     }
+    }
+    iex> Island.new(:wrong, coordinate)
+    {:error, :invalid_island_type}
+    iex> {:ok, coordinate} = Coordinate.new(10,10)
+    {:ok, %Coordinate{row: 10, col: 10}}
+    iex> Island.new(:l_shape, coordinate)
+    {:error, :invalid_coordinate}
   """
   def new(type, %Coordinate{} = upper_left) do
     with [_ | _] = offsets <- offsets(type),
