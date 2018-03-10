@@ -2,7 +2,7 @@ defmodule IslandsEngine.Guesses do
   @moduledoc """
   Documentation for IslandsEngine.Guesses
   """
-  alias __MODULE__
+  alias IslandsEngine.{Coordinate, Guesses}
 
   @enforce_keys [:hits, :misses]
   defstruct [:hits, :misses]
@@ -49,4 +49,15 @@ defmodule IslandsEngine.Guesses do
 
   """
   def new(), do: %Guesses{hits: MapSet.new(), misses: MapSet.new()}
+
+  @doc """
+  Add a coordinate to list of hits and misses
+  """
+  def add(%Guesses{} = guesses, :hit, %Coordinate{} = coordinate) do
+    update_in(guesses.hits, &MapSet.put(&1, coordinate))
+  end
+
+  def add(%Guesses{} = guesses, :miss, %Coordinate{} = coordinate) do
+    update_in(guesses.misses, &MapSet.put(&1, coordinate))
+  end
 end
