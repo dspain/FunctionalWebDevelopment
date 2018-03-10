@@ -1,6 +1,6 @@
 defmodule IslandsEngine.Guesses do
   @moduledoc """
-  Documentation for IslandsEngine.Guesses
+  Documentation for `IslandsEngine.Guesses`
   """
   alias IslandsEngine.{Coordinate, Guesses}
 
@@ -49,7 +49,7 @@ defmodule IslandsEngine.Guesses do
   def new(), do: %Guesses{hits: MapSet.new(), misses: MapSet.new()}
 
   @doc """
-  Add a coordinate to list of hits and misses
+  Add an `IslandsEngine.Coordinate` to list of hits and misses
 
   ## Examples
       iex> guesses = Guesses.new()

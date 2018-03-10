@@ -1,6 +1,6 @@
 defmodule IslandsEngine.Island do
   @moduledoc """
-  Documentation for IslandsEngine.Island
+  Documentation for `IslandsEngine.Island`
   """
   alias IslandsEngine.{Coordinate, Island}
 
@@ -8,8 +8,8 @@ defmodule IslandsEngine.Island do
   defstruct [:coordinates, :hit_coordinates]
 
   @doc """
-  Create a new island using the valid island types:
-    :square, :atoll, :dot, :l_shape, :s_shape
+  Create a new island using the valid island types (:square, :atoll, :dot, :l_shape, :s_shape),
+  using an `IslandsEngine.Coordinate` for the upper left corner.
 
   ## Examples
       iex> {:ok, coordinate} = Coordinate.new(4,6)

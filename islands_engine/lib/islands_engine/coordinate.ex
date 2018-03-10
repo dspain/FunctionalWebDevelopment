@@ -1,6 +1,6 @@
 defmodule IslandsEngine.Coordinate do
   @moduledoc """
-  Documentation for IslandsEngine.Coordinate
+  Documentation for `IslandsEngine.Coordinate`
   """
   alias __MODULE__
 
