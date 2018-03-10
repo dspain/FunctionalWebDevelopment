@@ -13,7 +13,6 @@ defmodule IslandsEngine.Island do
 
   ## Examples
       iex> {:ok, coordinate} = Coordinate.new(4,6)
-
       iex> Island.new(:l_shape, coordinate)
       {:ok,
        %Island{
@@ -28,7 +27,6 @@ defmodule IslandsEngine.Island do
       }
       iex> Island.new(:wrong, coordinate)
       {:error, :invalid_island_type}
-
       iex> {:ok, coordinate} = Coordinate.new(10,10)
       iex> Island.new(:l_shape, coordinate)
       {:error, :invalid_coordinate}
