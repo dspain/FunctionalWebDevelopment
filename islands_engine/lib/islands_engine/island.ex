@@ -42,6 +42,20 @@ defmodule IslandsEngine.Island do
 
   @doc """
   Check if two islands overlap
+
+  ## Examples
+      iex> {:ok, square_coordinate} = Coordinate.new(1,1)
+      iex> {:ok, square} = Island.new(:square, square_coordinate)
+      iex> {:ok, dot_coordinate} = Coordinate.new(1,2)
+      iex> {:ok, dot} = Island.new(:dot, dot_coordinate)
+      iex> {:ok, l_shape_coordinate} = Coordinate.new(5,5)
+      iex> {:ok, l_shape} = Island.new(:l_shape, l_shape_coordinate)
+      iex> Island.overlaps?(square, dot)
+      true
+      iex> Island.overlaps?(square, l_shape)
+      false
+      iex> Island.overlaps?(l_shape, dot)
+      false
   """
   def overlaps?(existing_island, new_island) do
     not MapSet.disjoint?(existing_island.coordinates, new_island.coordinates)
