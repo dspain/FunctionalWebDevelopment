@@ -63,6 +63,26 @@ defmodule IslandsEngine.Island do
 
   @doc """
   Guess if a coordinate is on an island
+
+  ## Examples
+      iex> {:ok, dot_coordinate} = Coordinate.new(4,4)
+      iex> {:ok, dot} = Island.new(:dot, dot_coordinate)
+      iex> {:ok, coordinate} = Coordinate.new(2,2)
+      iex> :miss = Island.guess(dot, coordinate)
+      :miss
+      iex> dot
+      %Island{
+        coordinates: [%Coordinate{col: 4, row: 4}] |> Enum.into(MapSet.new()),
+        hit_coordinates: Enum.into([], MapSet.new())
+      }
+      iex> {:ok, coordinate} = Coordinate.new(4,4)
+      iex> Island.guess(dot, coordinate)
+      {:hit,
+       %Island{
+        coordinates: [%Coordinate{col: 4, row: 4}] |> Enum.into(MapSet.new()),
+        hit_coordinates: [%Coordinate{col: 4, row: 4}] |> Enum.into(MapSet.new())
+       }
+      }
   """
   def guess(island, coordinate) do
     case MapSet.member?(island.coordinates, coordinate) do
@@ -77,6 +97,14 @@ defmodule IslandsEngine.Island do
 
   @doc """
   Check if an island is completely forested
+
+  ## Examples
+      iex> {:ok, dot_coordinate} = Coordinate.new(4,4)
+      iex> {:ok, dot} = Island.new(:dot, dot_coordinate)
+      iex> {:ok, coordinate} = Coordinate.new(4,4)
+      iex> {:hit, dot} = Island.guess(dot, coordinate)
+      iex> Island.forested?(dot)
+      true
   """
   def forested?(island), do: MapSet.equal?(island.coordinates, island.hit_coordinates)
 
