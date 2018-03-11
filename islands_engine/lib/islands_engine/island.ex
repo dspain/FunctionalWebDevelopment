@@ -75,6 +75,11 @@ defmodule IslandsEngine.Island do
     end
   end
 
+  @doc """
+  Check if an island is completely forested
+  """
+  def forested?(island), do: MapSet.equal?(island.coordinates, island.hit_coordinates)
+
   defp offsets(:square), do: [{0, 0}, {0, 1}, {1, 0}, {1, 1}]
   defp offsets(:atoll), do: [{0, 0}, {0, 1}, {1, 1}, {2, 0}, {2, 1}]
   defp offsets(:dot), do: [{0, 0}]
