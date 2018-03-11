@@ -101,6 +101,8 @@ defmodule IslandsEngine.Island do
   ## Examples
       iex> {:ok, dot_coordinate} = Coordinate.new(4,4)
       iex> {:ok, dot} = Island.new(:dot, dot_coordinate)
+      iex> Island.forested?(dot)
+      false
       iex> {:ok, coordinate} = Coordinate.new(4,4)
       iex> {:hit, dot} = Island.guess(dot, coordinate)
       iex> Island.forested?(dot)
