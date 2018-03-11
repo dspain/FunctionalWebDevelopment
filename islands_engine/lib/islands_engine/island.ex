@@ -61,6 +61,20 @@ defmodule IslandsEngine.Island do
     not MapSet.disjoint?(existing_island.coordinates, new_island.coordinates)
   end
 
+  @doc """
+  Guess if a coordinate is on an island
+  """
+  def guess(island, coordinate) do
+    case MapSet.member?(island.coordinates, coordinate) do
+      true ->
+        hit_coordinates = MapSet.put(island.hit_coordinates, coordinate)
+        {:hit, %{island | hit_coordinates: hit_coordinates}}
+
+      false ->
+        :miss
+    end
+  end
+
   defp offsets(:square), do: [{0, 0}, {0, 1}, {1, 0}, {1, 1}]
   defp offsets(:atoll), do: [{0, 0}, {0, 1}, {1, 1}, {2, 0}, {2, 1}]
   defp offsets(:dot), do: [{0, 0}]
