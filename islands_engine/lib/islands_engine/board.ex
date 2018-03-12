@@ -41,4 +41,11 @@ defmodule IslandsEngine.Board do
       end
     end)
   end
+
+  defp guess_response({key, island}, board) do
+    board = %{board | key => island}
+    {:hit, forest_check(board, key), win_check(board), board}
+  end
+
+  defp guess_response(:miss, board), do: {:miss, :none, :no_win, board}
 end
