@@ -3,7 +3,7 @@ defmodule IslandsEngine.Board do
   Description of `IslandsEngine.Board`
   """
 
-  alias IslandsEngine.Island
+  alias IslandsEngine.{Coordiante, Island}
 
   @doc """
   Create a new board
@@ -25,5 +25,11 @@ defmodule IslandsEngine.Board do
 
   def all_islands_positioned?(board) do
     Enum.all?(Island.types(), &Map.has_key?(board, &1))
+  end
+
+  def guess(board, %Coordinate{} = coordinate) do
+    board
+    |> check_all_islands(coordinate)
+    |> guess_response(board)
   end
 end
