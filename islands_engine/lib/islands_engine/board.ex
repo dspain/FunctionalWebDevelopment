@@ -32,4 +32,13 @@ defmodule IslandsEngine.Board do
     |> check_all_islands(coordinate)
     |> guess_response(board)
   end
+
+  defp check_all_islands(board, coordinate) do
+    Enum.find_value(board, :miss, fn {key, island} ->
+      case Island.guess(island, coordinate) do
+        {:hit, island} -> {key, island}
+        :miss -> false
+      end
+    end)
+  end
 end
