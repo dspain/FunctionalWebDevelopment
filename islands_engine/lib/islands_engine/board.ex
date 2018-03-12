@@ -3,7 +3,7 @@ defmodule IslandsEngine.Board do
   Description of `IslandsEngine.Board`
   """
 
-  alias IslandsEngine.{Coordiante, Island}
+  alias IslandsEngine.{Coordinate, Island}
 
   @doc """
   Create a new board
@@ -69,5 +69,6 @@ defmodule IslandsEngine.Board do
     end
   end
 
-  defp all_forested?, do: Enum.all?(board, fn {_key, island} -> Island.forested?(island) end)
+  defp all_forested?(board),
+    do: Enum.all?(board, fn {_key, island} -> Island.forested?(island) end)
 end
