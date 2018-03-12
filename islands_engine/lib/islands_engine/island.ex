@@ -112,6 +112,10 @@ defmodule IslandsEngine.Island do
 
   @doc """
   Return all valid island types
+
+  ## Examples
+      iex> Island.types()
+      [:atoll, :dot, :l_shape, :s_shape, :square]
   """
   def types(), do: [:atoll, :dot, :l_shape, :s_shape, :square]
 
