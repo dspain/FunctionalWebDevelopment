@@ -57,7 +57,8 @@ defmodule IslandsEngine.Board do
 
   @doc """
   Guess if a coordinate is a hit or miss,  return a 4-tuple of information:
-    {:hit/:miss, :none/:island_type, :win/:no_win, board}
+
+    `{:hit/:miss, :none/:island_type, :win/:no_win, board}`
 
   ## Examples
       iex> board = Board.new()
