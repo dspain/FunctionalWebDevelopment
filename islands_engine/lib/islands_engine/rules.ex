@@ -31,7 +31,7 @@ defmodule IslandsEngine.Rules do
     do: {:ok, %Rules{rules | state: :player_set}}
 
   def check(%Rules{state: :players_set} = rules, {:position_islands, player}) do
-    case Map.fetch(rules, player) do
+    case Map.fetch!(rules, player) do
       :islands_set -> :error
       :islands_not_set -> {:ok, rules}
     end
