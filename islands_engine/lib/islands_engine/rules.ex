@@ -20,15 +20,15 @@ defmodule IslandsEngine.Rules do
   ## Examples
       iex> rules = Rules.new()
       iex> {:ok, rules} = Rules.check(rules, :add_player)
-      {:ok, %Rules{state: :player_set}}
+      {:ok, %Rules{state: :players_set}}
       iex> rules.state
-      :player_set
+      :players_set
       iex> rules = Rules.new()
       iex> Rules.check(rules, :no_such_rule)
       :error
   """
   def check(%Rules{state: :initialized} = rules, :add_player),
-    do: {:ok, %Rules{rules | state: :player_set}}
+    do: {:ok, %Rules{rules | state: :players_set}}
 
   def check(%Rules{state: :players_set} = rules, {:position_islands, player}) do
     case Map.fetch!(rules, player) do
