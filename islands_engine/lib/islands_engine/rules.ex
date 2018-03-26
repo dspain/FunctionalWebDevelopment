@@ -10,7 +10,10 @@ defmodule IslandsEngine.Rules do
 
   ## Examples
       iex> Rules.new()
-      %Rules{state: :initialized}
+      %Rules{state: :initialized,
+        player1: :islands_not_set,
+        player2: :islands_not_set
+      }
   """
   def new(), do: %Rules{}
 
@@ -26,6 +29,13 @@ defmodule IslandsEngine.Rules do
       iex> rules = Rules.new()
       iex> Rules.check(rules, :no_such_rule)
       :error
+      iex> rules = %Rules{rules | state: :players_set}
+      iex> {:ok, rules} = Rules.check(rules, {:position_islands, :player1})
+      {:ok, %Rules{state: :players_set, player1: :islands_not_set, player2: :islands_not_set}}
+      iex> {:ok, rules} = Rules.check(rules, {:position_islands, :player2})
+      {:ok, %Rules{state: :players_set, player1: :islands_not_set, player2: :islands_not_set}}
+      iex> rules.state
+      :players_set
   """
   def check(%Rules{state: :initialized} = rules, :add_player),
     do: {:ok, %Rules{rules | state: :players_set}}
