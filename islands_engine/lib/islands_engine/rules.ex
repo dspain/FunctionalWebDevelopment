@@ -47,5 +47,9 @@ defmodule IslandsEngine.Rules do
     end
   end
 
+  def check(%Rules{state: :players_set} = rules, {:set_islands, player}) do
+    rules = Map.put(rules, player, :islands_set)
+  end
+
   def check(_state, _action), do: :error
 end
