@@ -4,4 +4,6 @@ defmodule IslandsEngine.Rules do
   defstruct state: :initialized
 
   def new(), do: %Rules{}
+
+  def check(_state, _action), do: :error
 end
