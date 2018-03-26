@@ -52,4 +52,7 @@ defmodule IslandsEngine.Rules do
   end
 
   def check(_state, _action), do: :error
+
+  defp both_players_islands_set?(rules),
+    do: rules.player1 == :islands_set && rules.player2 == :islands_set
 end
