@@ -36,6 +36,32 @@ defmodule IslandsEngine.Rules do
       {:ok, %Rules{state: :players_set, player1: :islands_not_set, player2: :islands_not_set}}
       iex> rules.state
       :players_set
+      iex> rules = Rules.new()
+      iex> rules = %Rules{rules | state: :players_set}
+      iex> {:ok, rules} = Rules.check(rules, {:set_islands, :player1})
+      iex> {:ok, rules} = Rules.check(rules, {:set_islands, :player1})
+      iex> rules.state
+      :players_set
+      iex> Rules.check(rules, {:position_islands, :player1})
+      :error
+      iex> {:ok, rules} = Rules.check(rules, {:position_islands, :player2})
+      iex> {:ok, rules} = Rules.check(rules, {:set_islands, :player2})
+      iex> Rules.check(rules, {:position_islands, :player2})
+      :error
+      iex> rules.state
+      :player1_turn
+      iex> Rules.check(rules, {:set_islands, :player2})
+      :error
+      iex> rules.state
+      :player1_turn
+      iex> Rules.check(rules, :add_player)
+      :error
+      iex> Rules.check(rules, {:position_islands, :player1})
+      :error
+      iex> Rules.check(rules, {:position_islands, :player2})
+      :error
+      iex> Rules.check(rules, {:set_islands, :player1})
+      :error
   """
   def check(%Rules{state: :initialized} = rules, :add_player),
     do: {:ok, %Rules{rules | state: :players_set}}
